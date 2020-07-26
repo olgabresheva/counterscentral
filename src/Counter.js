@@ -3,21 +3,22 @@ import './App.css';
 
 function Counter(props) {
 
-    const [removeCount, setRemoveCount] = useState(false);
+    const [btnHidden, setbtnHidden] = useState(false);
 
     const deleteCount = () => {
-        setRemoveCount(true);
+        props.deleteCount(props.id);
+        setbtnHidden(true);
     }
 
     return (
 
         <div className="Counter">
 
-                <button onClick={() => props.decreaseCount(props.id)}>-</button>
-                <span className="count">{props.count}</span>
-                <button onClick={() => props.increaseCount(props.id)}>+</button>
-                <button onClick={() => props.resetCount(props.id)}>Reset</button>
-                <button onClick={deleteCount}>Delete</button>
+            <button hidden={btnHidden} onClick={() => props.decreaseCount(props.id)}>-</button>
+            <span className="count">{props.count}</span>
+            <button hidden={btnHidden} onClick={() => props.increaseCount(props.id)}>+</button>
+            <button hidden={btnHidden} onClick={() => props.resetCount(props.id)}>Reset</button>
+            <button hidden={btnHidden} onClick={deleteCount}>Delete</button>
 
         </div>
     );

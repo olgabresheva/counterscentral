@@ -45,9 +45,21 @@ function App() {
         setCounters(updatedCounters);
     }
 
-    const resetAllCounters = () => {
-        const updatedCounters = counters.map(el => el.count * 0);
+    const resetAll = () => {
+        const updatedCounters = [...counters];
+        updatedCounters.map(el => el.count = 0)
         setCounters(updatedCounters);
+    }
+
+    const deleteCount = (id) => {
+        const updatedCounters = counters.filter(el => el.id !== id);
+        setCounters(updatedCounters);
+    }
+
+    const [range, setRange] = useState('');
+
+    const addWithRange = () => {
+        randomCount();
     }
 
     return (
@@ -55,12 +67,16 @@ function App() {
             <div className="container">
 
                 <button onClick={randomCount}>Add Counter</button>
-                <button onClick={resetAllCounters}>Reset All</button>
+                <button onClick={resetAll}>Reset All</button>
+                <br/>
+                <button onClick={addWithRange}>Add with Range</button>
+                <input type="text" value={range} onChange={e => setRange(e.target.value)}/>
                 <hr/>
                 <CounterList counters={counters}
                              increaseCount={increaseCount}
                              decreaseCount={decreaseCount}
                              resetCount={resetCount}
+                             deleteCount={deleteCount}
                 />
             </div>
         </div>

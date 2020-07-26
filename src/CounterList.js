@@ -13,7 +13,8 @@ function CounterList(props) {
                     id={el.id}
                     increaseCount={props.increaseCount}
                     decreaseCount={props.decreaseCount}
-                    resetCount={props.resetCount}/>)}
+                    resetCount={props.resetCount}
+                    deleteCount={props.deleteCount}/>)}
         </div>
     );
 }
