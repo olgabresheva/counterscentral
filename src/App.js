@@ -2,14 +2,10 @@ import React, {useState} from 'react';
 import './App.css';
 import {uuid} from "uuidv4";
 import CounterList from "./CounterList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import CounterRangeBtn from "./CounterRangeBtn";
 
 function App() {
-
-    const initialCounters = [
-        {id: uuid(), count: 4},
-        {id: uuid(), count: 34},
-        {id: uuid(), count: 5},
-    ]
 
     const [counters, setCounters] = useState([]);
 
@@ -21,12 +17,11 @@ function App() {
     }
 
     const increaseCount = (id) => {
-        //console.log(id);
         const updatedCounters = counters.map(el => {
             if (el.id === id) return ({...el, count: el.count + 1})
             else return el
         })
-        setCounters(updatedCounters)
+        setCounters(updatedCounters);
     }
 
     const decreaseCount = (id) => {
@@ -56,28 +51,53 @@ function App() {
         setCounters(updatedCounters);
     }
 
-    const [range, setRange] = useState('');
+    //const range = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    const [range, setRange] = useState('')
+    const [showRangeCounter, setShowRangeCounter] = useState(false);
+    const [num, setNum] = useState([])
+
+    const rangeSetNum = (range) => {
+        const newRange = [];
+        for (let i = 1; i <= range; i++) {
+            newRange.push(i)
+        }
+        setNum(newRange);
+        console.log(newRange)
+    }
 
     const addWithRange = () => {
-        randomCount();
+        setShowRangeCounter(true);
+        rangeSetNum();
     }
 
     return (
         <div className="App">
             <div className="container">
-
-                <button onClick={randomCount}>Add Counter</button>
-                <button onClick={resetAll}>Reset All</button>
-                <br/>
-                <button onClick={addWithRange}>Add with Range</button>
-                <input type="text" value={range} onChange={e => setRange(e.target.value)}/>
-                <hr/>
+                <div className="row">
+                    <div className="col-md-4">
+                        <button className="btn btn-outline-info btn-sm" onClick={randomCount}>Add Counter</button>
+                        <button className="btn btn-outline-secondary btn-sm" onClick={resetAll}>Reset All</button>
+                    </div>
+                    {/*<div className="col-md-4 offset-md-4">*/}
+                    {/*    <div className="input-group mb-3 input-group-sm">*/}
+                    {/*        <input type="number" className="form-control" placeholder="Add your range"*/}
+                    {/*               value={range} onChange={e => setRange(e.target.value)}/>*/}
+                    {/*        <div className="input-group-append">*/}
+                    {/*            <button className="btn btn-outline-info btn-sm" type="button"*/}
+                    {/*                    id="button-addon2" onClick={addWithRange}>Add Counter*/}
+                    {/*            </button>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                </div>
                 <CounterList counters={counters}
                              increaseCount={increaseCount}
                              decreaseCount={decreaseCount}
                              resetCount={resetCount}
                              deleteCount={deleteCount}
                 />
+                {/*{showRangeCounter && <CounterRangeBtn num={num}/>}*/}
             </div>
         </div>
     );
