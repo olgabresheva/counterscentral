@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/counterscentral/static/css/main.f7290c29.chunk.css",
-    "main.js": "/counterscentral/static/js/main.fa5a4878.chunk.js",
-    "main.js.map": "/counterscentral/static/js/main.fa5a4878.chunk.js.map",
+    "main.js": "/counterscentral/static/js/main.2eda55d4.chunk.js",
+    "main.js.map": "/counterscentral/static/js/main.2eda55d4.chunk.js.map",
     "runtime-main.js": "/counterscentral/static/js/runtime-main.9843a90b.js",
     "runtime-main.js.map": "/counterscentral/static/js/runtime-main.9843a90b.js.map",
     "static/css/2.af3c1da9.chunk.css": "/counterscentral/static/css/2.af3c1da9.chunk.css",
     "static/js/2.bb822a39.chunk.js": "/counterscentral/static/js/2.bb822a39.chunk.js",
     "static/js/2.bb822a39.chunk.js.map": "/counterscentral/static/js/2.bb822a39.chunk.js.map",
     "index.html": "/counterscentral/index.html",
-    "precache-manifest.ed518fd4315e07ff1885fd6fac3b4c4e.js": "/counterscentral/precache-manifest.ed518fd4315e07ff1885fd6fac3b4c4e.js",
+    "precache-manifest.60210acc98fa85cc4ab192052796e0ad.js": "/counterscentral/precache-manifest.60210acc98fa85cc4ab192052796e0ad.js",
     "service-worker.js": "/counterscentral/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/counterscentral/static/css/2.af3c1da9.chunk.css.map",
     "static/css/main.f7290c29.chunk.css.map": "/counterscentral/static/css/main.f7290c29.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.bb822a39.chunk.js",
     "static/css/main.f7290c29.chunk.css",
-    "static/js/main.fa5a4878.chunk.js"
+    "static/js/main.2eda55d4.chunk.js"
   ]
 }
