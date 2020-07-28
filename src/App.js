@@ -8,6 +8,7 @@ import CounterRangeBtn from "./CounterRangeBtn";
 function App() {
 
     const [counters, setCounters] = useState([]);
+    const [countCustom, setCountCustom] = useState(0);
 
     const randomCount = () => {
         const num = Math.round(Math.random() * 10);
@@ -44,6 +45,7 @@ function App() {
         const updatedCounters = [...counters];
         updatedCounters.map(el => el.count = 0)
         setCounters(updatedCounters);
+        setCountCustom(0);
     }
 
     const deleteCount = (id) => {
@@ -51,28 +53,55 @@ function App() {
         setCounters(updatedCounters);
     }
 
-    //const range = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const deleteAll = () => {
+        setCounters([]);
+        setShowRangeCounter(false);
+    }
 
-    const [range, setRange] = useState('')
+    const [range, setRange] = useState(0)
     const [showRangeCounter, setShowRangeCounter] = useState(false);
-    const [num, setNum] = useState([])
+    const [rangeOfBtns, setRangeOfBtns] = useState([[]]);
+    const [indexBtn, setIndexBtn] = useState(0);
+    const [disabledAddBtn, setDisabledAddbtn] = useState(true);
+    // const [showAlert, setShowAlert] = useState(false)
 
-    const rangeSetNum = (range) => {
+    const setRangeEnableBtn = (e) => {
+        setRange(e.target.value);
+        (range > 0) && setDisabledAddbtn(false)
+    }
+
+    const setRangeBtn = () => {
         const newRange = [];
         for (let i = 1; i <= range; i++) {
             newRange.push(i)
         }
-        setNum(newRange);
-        console.log(newRange)
+        const updatedRangeOfBtns = [...rangeOfBtns];
+        updatedRangeOfBtns.push(newRange);
+        setRangeOfBtns(updatedRangeOfBtns);
     }
 
     const addWithRange = () => {
+        setRangeBtn();
         setShowRangeCounter(true);
-        rangeSetNum();
+        setIndexBtn(indexBtn + 1);
+        setRange(0);
+        setCountCustom(0);
+        setDisabledAddbtn(true);
+        setCustomCount(true);
     }
 
-    const deleteAll = () => {
-        setCounters([]);
+    const changeCountCustom = (n) => {
+        setCountCustom(countCustom + n);
+    }
+
+    const resetCustomCount = () => {
+        setCountCustom(0);
+    }
+
+    const [customCount, setCustomCount] = useState(true)
+
+    const deleteCustomCount = () => {
+        setCustomCount(false);
     }
 
     return (
@@ -84,17 +113,19 @@ function App() {
                         <button className="btn btn-outline-secondary btn-sm" onClick={resetAll}>Reset All</button>
                         <button className="btn btn-outline-secondary btn-sm" onClick={deleteAll}>Delete All</button>
                     </div>
-                    {/*<div className="col-md-4 offset-md-4">*/}
-                    {/*    <div className="input-group mb-3 input-group-sm">*/}
-                    {/*        <input type="number" className="form-control" placeholder="Add your range"*/}
-                    {/*               value={range} onChange={e => setRange(e.target.value)}/>*/}
-                    {/*        <div className="input-group-append">*/}
-                    {/*            <button className="btn btn-outline-info btn-sm" type="button"*/}
-                    {/*                    id="button-addon2" onClick={addWithRange}>Add Counter*/}
-                    {/*            </button>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                    <div className="col-md-4 offset-md-4">
+                        <div className="input-group mb-3 input-group-sm">
+                            <input type="number" className="form-control" placeholder="Add your range"
+                                   value={range} onChange={setRangeEnableBtn}/>
+                            <div className="input-group-append">
+                                <button className="btn btn-outline-info btn-sm" type="button"
+                                        id="button-addon2" disabled={disabledAddBtn} onClick={addWithRange}>Add Counter
+                                    w/Range
+                                </button>
+                            </div>
+                            {/*{showAlert && <Alert variant="secondary">Please use positive values</Alert>}*/}
+                        </div>
+                    </div>
                 </div>
                 <CounterList counters={counters}
                              increaseCount={increaseCount}
@@ -102,7 +133,15 @@ function App() {
                              resetCount={resetCount}
                              deleteCount={deleteCount}
                 />
-                {/*{showRangeCounter && <CounterRangeBtn num={num}/>}*/}
+                {showRangeCounter && <CounterRangeBtn
+                    rangeOfBtns={rangeOfBtns}
+                    countCustom={countCustom}
+                    changeCountCustom={changeCountCustom}
+                    indexBtn={indexBtn}
+                    resetCustomCount={resetCustomCount}
+                    customCount={customCount}
+                    deleteCustomCount={deleteCustomCount}
+                />}
             </div>
         </div>
     );
