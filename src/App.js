@@ -71,6 +71,10 @@ function App() {
         rangeSetNum();
     }
 
+    const deleteAll = () => {
+        setCounters([]);
+    }
+
     return (
         <div className="App">
             <div className="container">
@@ -78,6 +82,7 @@ function App() {
                     <div className="col-md-4">
                         <button className="btn btn-outline-info btn-sm" onClick={randomCount}>Add Counter</button>
                         <button className="btn btn-outline-secondary btn-sm" onClick={resetAll}>Reset All</button>
+                        <button className="btn btn-outline-secondary btn-sm" onClick={deleteAll}>Delete All</button>
                     </div>
                     {/*<div className="col-md-4 offset-md-4">*/}
                     {/*    <div className="input-group mb-3 input-group-sm">*/}
