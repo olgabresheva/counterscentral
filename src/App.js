@@ -67,7 +67,8 @@ function App() {
 
     const setRangeEnableBtn = (e) => {
         setRange(e.target.value);
-        (range > 0) && setDisabledAddbtn(false)
+        if (range > 0) {setDisabledAddbtn(false)}
+        else setDisabledAddbtn(true);
     }
 
     const setRangeBtn = () => {
