@@ -4,6 +4,7 @@ import {uuid} from "uuidv4";
 import CounterList from "./CounterList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CounterRangeBtn from "./CounterRangeBtn";
+// import {Alert} from "react-bootstrap";
 
 function App() {
 
@@ -62,13 +63,13 @@ function App() {
     const [showRangeCounter, setShowRangeCounter] = useState(false);
     const [rangeOfBtns, setRangeOfBtns] = useState([[]]);
     const [indexBtn, setIndexBtn] = useState(0);
-    const [disabledAddBtn, setDisabledAddbtn] = useState(true);
+    // const [disabledAddBtn, setDisabledAddbtn] = useState(true);
     // const [showAlert, setShowAlert] = useState(false)
 
     const setRangeEnableBtn = (e) => {
         setRange(e.target.value);
-        if (range > 0) {setDisabledAddbtn(false)}
-        else setDisabledAddbtn(true);
+        // if (range > 0) {setDisabledAddbtn(false)}
+        // else setDisabledAddbtn(true)
     }
 
     const setRangeBtn = () => {
@@ -87,7 +88,7 @@ function App() {
         setIndexBtn(indexBtn + 1);
         setRange(0);
         setCountCustom(0);
-        setDisabledAddbtn(true);
+        // setDisabledAddbtn(true);
         setCustomCount(true);
     }
 
@@ -115,16 +116,35 @@ function App() {
                         <button className="btn btn-outline-secondary btn-sm" onClick={deleteAll}>Delete All</button>
                     </div>
                     <div className="col-md-4 offset-md-4">
-                        <div className="input-group mb-3 input-group-sm">
-                            <input type="number" className="form-control" placeholder="Add your range"
-                                   value={range} onChange={setRangeEnableBtn}/>
+                        {/*<div className="input-group mb-3 input-group-sm">*/}
+                        {/*    <input type="number" className="form-control" placeholder="Add your range"*/}
+                        {/*           value={range} onChange={setRangeEnableBtn}/>*/}
+                        {/*    <div className="input-group-append">*/}
+                        {/*        <button className="btn btn-outline-info btn-sm" type="button"*/}
+                        {/*                id="button-addon2" disabled={disabledAddBtn} onClick={addWithRange}>Add Counter*/}
+                        {/*            w/Range*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*    /!*{showAlert && <Alert variant="secondary">Please use positive values</Alert>}*!/*/}
+                        {/*</div>*/}
+                        <div className="input-group">
+                            <select className="custom-select custom-select-sm" id="inputGroupSelect04"
+                                    aria-label="Example select with button addon" value={range} onChange={setRangeEnableBtn}>
+                                <option selected>Choose you range</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                             <div className="input-group-append">
-                                <button className="btn btn-outline-info btn-sm" type="button"
-                                        id="button-addon2" disabled={disabledAddBtn} onClick={addWithRange}>Add Counter
-                                    w/Range
-                                </button>
+                                <button className="btn btn-outline-info btn-sm" type="button" onClick={addWithRange}>Add Counter w/Range</button>
                             </div>
-                            {/*{showAlert && <Alert variant="secondary">Please use positive values</Alert>}*/}
                         </div>
                     </div>
                 </div>
