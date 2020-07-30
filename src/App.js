@@ -61,10 +61,8 @@ function App() {
 
     const [range, setRange] = useState(0)
     const [showRangeCounter, setShowRangeCounter] = useState(false);
-    const [rangeOfBtns, setRangeOfBtns] = useState([[]]);
-    const [indexBtn, setIndexBtn] = useState(0);
+    const [rangeOfBtns, setRangeOfBtns] = useState([]);
     // const [disabledAddBtn, setDisabledAddbtn] = useState(true);
-    // const [showAlert, setShowAlert] = useState(false)
 
     const setRangeEnableBtn = (e) => {
         setRange(e.target.value);
@@ -77,18 +75,15 @@ function App() {
         for (let i = 1; i <= range; i++) {
             newRange.push(i)
         }
-        const updatedRangeOfBtns = [...rangeOfBtns];
-        updatedRangeOfBtns.push(newRange);
-        setRangeOfBtns(updatedRangeOfBtns);
+        setRangeOfBtns(newRange);
     }
+
 
     const addWithRange = () => {
         setRangeBtn();
         setShowRangeCounter(true);
-        setIndexBtn(indexBtn + 1);
         setRange(0);
         setCountCustom(0);
-        // setDisabledAddbtn(true);
         setCustomCount(true);
     }
 
@@ -158,7 +153,6 @@ function App() {
                     rangeOfBtns={rangeOfBtns}
                     countCustom={countCustom}
                     changeCountCustom={changeCountCustom}
-                    indexBtn={indexBtn}
                     resetCustomCount={resetCustomCount}
                     customCount={customCount}
                     deleteCustomCount={deleteCustomCount}

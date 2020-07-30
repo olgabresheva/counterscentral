@@ -28,15 +28,13 @@ function CounterRangeBtn(props) {
             {props.customCount &&
             <>
                 <hr/>
-                {props.rangeOfBtns[props.indexBtn].map(el => <button className="btn btn-outline-secondary btn-sm"
+                {props.rangeOfBtns.map(el => <button className="btn btn-outline-secondary btn-sm"
                                                                      key={uuid()}
-                                                                     value={el * -1}
                                                                      onClick={() => props.changeCountCustom(el * -1)}>
                     {el * -1}</button>).reverse()}
                 <span className="count">{props.countCustom}</span>
-                {props.rangeOfBtns[props.indexBtn].map(el => <button className="btn btn-outline-secondary btn-sm"
+                {props.rangeOfBtns.map(el => <button className="btn btn-outline-secondary btn-sm"
                                                                      key={uuid()}
-                                                                     value={el}
                                                                      onClick={() => props.changeCountCustom(el)}>{el}</button>)}
                 <button className="btn btn-outline-info btn-sm" onClick={props.resetCustomCount}>{resetBtn}</button>
                 <button className="btn btn-outline-info btn-sm" onClick={props.deleteCustomCount}>{deletBtn}</button>
