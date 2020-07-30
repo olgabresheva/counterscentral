@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "26712faab9d1969e13191a5b5c118d7e",
+    "revision": "900673a23a46a620c2f7edeaf8bc12de",
     "url": "/counterscentral/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/counterscentral/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "bb05efc8cecb37f20b5c",
+    "revision": "caf9c35448969a0e393c",
     "url": "/counterscentral/static/css/main.3b0b0e4c.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/counterscentral/static/js/2.caad4694.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bb05efc8cecb37f20b5c",
-    "url": "/counterscentral/static/js/main.c780e2f5.chunk.js"
+    "revision": "caf9c35448969a0e393c",
+    "url": "/counterscentral/static/js/main.9d94fba1.chunk.js"
   },
   {
     "revision": "0e6a81bc4035c6cfc486",
