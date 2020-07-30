@@ -130,7 +130,7 @@ function App() {
                         <div className="input-group">
                             <select className="custom-select custom-select-sm" id="inputGroupSelect04"
                                     aria-label="Example select with button addon" value={range} onChange={setRangeEnableBtn}>
-                                <option selected>Choose you range</option>
+                                <option selected>Choose your range</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
