@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
-import './App.css';
-import {uuid} from "uuidv4";
-import CounterList from "./CounterList";
-import "bootstrap/dist/css/bootstrap.min.css";
-import CounterRangeBtn from "./CounterRangeBtn";
-// import {Alert} from "react-bootstrap";
+import React, {useState} from 'react'; //default import of react library
+import './App.css'; //import of css file
+import {uuid} from "uuidv4"; //import of random id generator
+import CounterList from "./CounterList"; //import of child component
+import "bootstrap/dist/css/bootstrap.min.css"; //import of bootstrap library
+import CounterRangeBtn from "./CounterRangeBtn"; //import of child component
 
 function App() {
 
+    //random counter: array which comprises two values: state with default value equal to empty array and function which updates this state
     const [counters, setCounters] = useState([]);
+    //custom counter: array which comprises two values: state with default value equal to empty array and function which updates this state
     const [countCustom, setCountCustom] = useState(0);
 
+    //function which creates a random number by using Math.random method rounding to the whole number
+    //random number is added to the state of random counter with a random id
+    //update state 'counters' using setCountCustom function
     const randomCount = () => {
         const num = Math.round(Math.random() * 10);
         const updatedCounters = [...counters];
@@ -18,6 +22,10 @@ function App() {
         setCounters(updatedCounters);
     }
 
+    //function used to increase random counter by 1 step.
+    //we create a copy of state 'counters'. Using map() method iterate through mew array applying condition check for id
+    //of each element of array which we receive through callback function from child component. If id matches
+    //then count of this element gets increased by one. Update state 'counters' using setCountCustom function
     const increaseCount = (id) => {
         const updatedCounters = counters.map(el => {
             if (el.id === id) return ({...el, count: el.count + 1})
@@ -26,6 +34,10 @@ function App() {
         setCounters(updatedCounters);
     }
 
+    //function used to decrease random counter by 1 step.
+    //we create a copy of state 'counters'. Using map() method iterate through mew array applying condition check for id
+    //of each element of array which we receive through callback function from child component. If id matches
+    //then count of this element gets decreased by one. Update state 'counters' using setCountCustom function
     const decreaseCount = (id) => {
         const updatedCounters = counters.map(el => {
             if (el.id === id) return ({...el, count: el.count - 1})
@@ -34,6 +46,10 @@ function App() {
         setCounters(updatedCounters);
     }
 
+    //function used to reset individual count to 0
+    //we create a copy of state 'counters'. Using map() method iterate through new array applying condition check for id
+    //of each element of array which we receive through callback function from child component.
+    // If id matches then count of this element is set to 0 update state 'counters' using setCountCustom function
     const resetCount = (id) => {
         const updatedCounters = counters.map(el => {
             if (el.id === id) return ({...el, count: 0})
@@ -42,6 +58,9 @@ function App() {
         setCounters(updatedCounters);
     }
 
+    //function used to reset count to 0 for all counters
+    //we create a copy of state 'counters', using map() method iterate through new array updating value of count of each element to 0
+    //update state 'counters' using setCountCustom function
     const resetAll = () => {
         const updatedCounters = [...counters];
         updatedCounters.map(el => el.count = 0)
@@ -49,6 +68,10 @@ function App() {
         setCountCustom(0);
     }
 
+    //function used to delete individual count to 0
+    //Using filter() method we iterate through state 'counters' applying condition check for id
+    //of each element of array which we receive through callback function from child component.
+    // If id matches then count of this element is set to 0 update state 'counters' using setCountCustom function
     const deleteCount = (id) => {
         const updatedCounters = counters.filter(el => el.id !== id);
         setCounters(updatedCounters);
@@ -124,7 +147,8 @@ function App() {
                         {/*</div>*/}
                         <div className="input-group">
                             <select className="custom-select custom-select-sm" id="inputGroupSelect04"
-                                    aria-label="Example select with button addon" value={range} onChange={setRangeEnableBtn}>
+                                    aria-label="Example select with button addon" value={range}
+                                    onChange={setRangeEnableBtn}>
                                 <option selected>Choose your range</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -138,7 +162,9 @@ function App() {
                                 <option value="10">10</option>
                             </select>
                             <div className="input-group-append">
-                                <button className="btn btn-outline-info btn-sm" type="button" onClick={addWithRange}>Add Counter w/Range</button>
+                                <button className="btn btn-outline-info btn-sm" type="button" onClick={addWithRange}>Add
+                                    Counter w/Range
+                                </button>
                             </div>
                         </div>
                     </div>
