@@ -22,8 +22,10 @@ const resetBtn = (
 
 function Counter(props) {
 
+    //state which controls buttons visibility on the page
     const [btnHidden, setbtnHidden] = useState(false);
 
+    //function which deletes count passed to child component from parent component
     const deleteCount = () => {
         props.deleteCount(props.id);
         setbtnHidden(true);

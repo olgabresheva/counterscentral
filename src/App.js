@@ -68,31 +68,33 @@ function App() {
         setCountCustom(0);
     }
 
-    //function used to delete individual count to 0
+    //function used to delete individual counter
     //Using filter() method we iterate through state 'counters' applying condition check for id
     //of each element of array which we receive through callback function from child component.
-    // If id matches then count of this element is set to 0 update state 'counters' using setCountCustom function
+    //If id matches then count of this element is set to 0 update state 'counters' using setCountCustom function
     const deleteCount = (id) => {
         const updatedCounters = counters.filter(el => el.id !== id);
         setCounters(updatedCounters);
     }
 
+    //function used to delete all counters
+    //through function setCounters we change state 'counters' to empty array
+    //had to add an additioanal state to show/hide buttons on the page when counter is deleted
     const deleteAll = () => {
         setCounters([]);
         setShowRangeCounter(false);
     }
 
+    //created state range which si equal to 0 by default
     const [range, setRange] = useState(0)
+
+    //created state to show/hide new content of child component when button is clicked
     const [showRangeCounter, setShowRangeCounter] = useState(false);
+
+    //created state to keep range of buttons with default value empty array
     const [rangeOfBtns, setRangeOfBtns] = useState([]);
-    // const [disabledAddBtn, setDisabledAddbtn] = useState(true);
 
-    const setRangeEnableBtn = (e) => {
-        setRange(e.target.value);
-        // if (range > 0) {setDisabledAddbtn(false)}
-        // else setDisabledAddbtn(true)
-    }
-
+    //function which creates an array and writes it into state rangeOfBtns through setRangeOfBtns function
     const setRangeBtn = () => {
         const newRange = [];
         for (let i = 1; i <= range; i++) {
@@ -101,25 +103,29 @@ function App() {
         setRangeOfBtns(newRange);
     }
 
-
+    //function which is called on click of Btn and
     const addWithRange = () => {
-        setRangeBtn();
-        setShowRangeCounter(true);
-        setRange(0);
-        setCountCustom(0);
-        setCustomCount(true);
+        setRangeBtn(); //passes the range of buttons
+        setShowRangeCounter(true); //changes visibility of the child component content
+        setRange(0); //resets input to 0 after each click on button
+        setCountCustom(0); //resets ounter to 0 if new range is set
+        setCustomCount(true); // changes state when counter is deleted
     }
 
+    //function used to update custom counter value by value indicated on the button
     const changeCountCustom = (n) => {
         setCountCustom(countCustom + n);
     }
 
+    //function used reset custom counter to 0
     const resetCustomCount = () => {
         setCountCustom(0);
     }
 
+    //state for custom counter
     const [customCount, setCustomCount] = useState(true)
 
+    //function to delete custom Counter
     const deleteCustomCount = () => {
         setCustomCount(false);
     }
@@ -146,9 +152,10 @@ function App() {
                         {/*    /!*{showAlert && <Alert variant="secondary">Please use positive values</Alert>}*!/*/}
                         {/*</div>*/}
                         <div className="input-group">
+                            {/*input for custom counter which sets quantity of buttons*/}
                             <select className="custom-select custom-select-sm" id="inputGroupSelect04"
                                     aria-label="Example select with button addon" value={range}
-                                    onChange={setRangeEnableBtn}>
+                                    onChange={(e) => setRange(e.target.value)}>
                                 <option selected>Choose your range</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -162,6 +169,7 @@ function App() {
                                 <option value="10">10</option>
                             </select>
                             <div className="input-group-append">
+                                {/*button to add range of buttons for custom counter*/}
                                 <button className="btn btn-outline-info btn-sm" type="button" onClick={addWithRange}>Add
                                     Counter w/Range
                                 </button>
@@ -169,18 +177,30 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <CounterList counters={counters}
-                             increaseCount={increaseCount}
-                             decreaseCount={decreaseCount}
-                             resetCount={resetCount}
-                             deleteCount={deleteCount}
+                <CounterList
+                    // pass countets to child component
+                    counters={counters}
+                    //pass increaseCount function to child component
+                    increaseCount={increaseCount}
+                    //pass decreaseCount function to child component
+                    decreaseCount={decreaseCount}
+                    //pass reset function to child component
+                    resetCount={resetCount}
+                    //pass delete function to child component
+                    deleteCount={deleteCount}
                 />
                 {showRangeCounter && <CounterRangeBtn
+                    //pass rangeOfBtns state to child component
                     rangeOfBtns={rangeOfBtns}
+                    //pass countCustom state to child component
                     countCustom={countCustom}
+                    //pass function to child component which calculates countCustom based on click button
                     changeCountCustom={changeCountCustom}
+                    //pass reset custom counter function to child component
                     resetCustomCount={resetCustomCount}
+                    //pass customCount state to child component which is responsible for child elements display on the screen
                     customCount={customCount}
+                    //pass function to delete custom counter
                     deleteCustomCount={deleteCustomCount}
                 />}
             </div>
